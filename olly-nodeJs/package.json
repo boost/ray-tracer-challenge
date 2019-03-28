@@ -14,7 +14,7 @@
   },
   "scripts": {
     "test": "jest",
-    "lint": "./node_modules/.bin/eslint *.js"
+    "lint": "./node_modules/.bin/eslint . --ext .js"
   },
   "dependencies": {
     "decimal.js": "^10.1.1"

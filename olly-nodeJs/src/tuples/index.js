@@ -24,9 +24,9 @@ function Vector(...args) {
   Coordinate.call(this, ...args)
   this.w = 0.0
   this.equalTo = tuple => {
-    if(!tuple instanceof Point) return false
-    if(this.equalXYZ(tupple)) return true
-      return false
+    if(tuple instanceof Point) return false
+    if(this.equalXYZ(tuple)) return true
+    return false
   }
 }
 

@@ -30,9 +30,19 @@ function Vector(...args) {
   }
 }
 
-const tuple = (x,y,z,w) => {
+function tuple (x,y,z,w) {
   if(w === 1.0) return new Point(x,y,z)
 
   return new Vector(x,y,z,w)
 }
-export {tuple, Point, Vector}
+
+function addTuples(tuple1, tuple2) {
+  const newX = tuple1.x.plus(tuple2.x)
+  const newY = tuple1.y.plus(tuple2.y)
+  const newZ = tuple1.z.plus(tuple2.z)
+
+  if(tuple1.w + tuple2.w === 0.0) return new Vector(newX, newY, newZ)
+  return new Point(newX, newY, newZ)
+}
+
+export {tuple, Point, Vector, addTuples}

@@ -14,6 +14,7 @@
   },
   "scripts": {
     "test": "jest",
+    "test:watch": "node --inspect-brk node_modules/.bin/jest --runInBand --watchAll",
     "lint": "./node_modules/.bin/eslint . --ext .js"
   },
   "dependencies": {

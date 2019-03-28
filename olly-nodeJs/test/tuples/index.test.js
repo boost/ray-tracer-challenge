@@ -34,3 +34,19 @@ test('A tuple with w=0.0 is a vector', () => {
   expect(a.w).toBe(0.0)
   expect(a instanceof Vector).toBe(true)
 })
+
+describe('equalTuples', () => {
+  test('two identical tupples return true', () => {
+    const a = tuple(4.3, 2.5, 9.2, 1.0)
+    const b = tuple(4.3, 2.5, 9.2, 1.0)
+
+    expect(a.equalTo(b)).toBe(true)
+  })
+
+  test('two different tupples return false', () => {
+    const a = tuple(4.3, 2.5, 9.2, 1.0)
+    const b = tuple(4.0, 2.5, 9.2, 1.0)
+
+    expect(a.equalTo(b)).toBe(false)
+  })
+})

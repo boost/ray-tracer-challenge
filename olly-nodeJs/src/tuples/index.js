@@ -1,8 +1,9 @@
+import d from '../utils/decimal'
 
 function Coordinate(x,y,z) {
-  this.x = x
-  this.y = y
-  this.z = z
+  this.x = d(x)
+  this.y = d(y)
+  this.z = d(z)
 }
 
 function Point(...args) {

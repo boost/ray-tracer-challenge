@@ -37,5 +37,7 @@ const subtractTuples = (tuple1, tuple2) => {
 
 const negate =  (tuple1) => (tuple(tuple1.x.neg(), tuple1.y.neg(), tuple1.z.neg(), 0 - tuple1.w))
 
+const multiply = (_tuple, scalar) => ((tuple(_tuple.x.times(scalar), _tuple.y.times(scalar), _tuple.z.times(scalar), _tuple.w * scalar)))
+const divide = (_tuple, scalar) => ((tuple(_tuple.x.dividedBy(scalar), _tuple.y.dividedBy(scalar), _tuple.z.dividedBy(scalar), _tuple.w / scalar)))
 
-export {tuple, equalTuples, addTuples, subtractTuples, negate}
+export {tuple, equalTuples, addTuples, subtractTuples, negate, multiply, divide}

@@ -4,7 +4,9 @@ import {
   equalTuples,
   addTuples,
   subtractTuples,
-  negate}                 from '../../src/tuples'
+  negate,
+  divide,
+  multiply}               from '../../src/tuples'
 import { isPoint, Point } from '../../src/points'
 import { isVector }       from '../../src/vectors'
 
@@ -158,3 +160,40 @@ describe('Negating a tuple', () => {
     expect(negativeTuple.w).toBe(-1.0)
   })
 })
+
+describe('Multiplying a tuple by a scalar', () => {
+  const a = tuple(1, -2, 3, -4)
+  it('multipllies the tuple by the scalar', () => {
+    const b = multiply(a, 3.5)
+
+    expect(b.x.equals(a.x.times(3.5))).toBe(true)
+    expect(b.y.equals(a.y.times(3.5))).toBe(true)
+    expect(b.z.equals(a.z.times(3.5))).toBe(true)
+    expect(b.w).toBe(-14)
+  })
+})
+
+describe('Multiplying a tuple by a fraction', () => {
+  const a = tuple(1, -2, 3, -4)
+  it('multiplies the tuple by the fraction', () => {
+    const b = multiply(a, 0.5)
+
+    expect(b.x.equals(a.x.times(0.5))).toBe(true)
+    expect(b.y.equals(a.y.times(0.5))).toBe(true)
+    expect(b.z.equals(a.z.times(0.5))).toBe(true)
+    expect(b.w).toBe(-2)
+  })
+})
+
+describe('Dividing a tuple by a scalar', () => {
+  const a = tuple(1, -2, 3, -4)
+  it('divides the tuple by the scalar', () => {
+    const b = divide(a, 2)
+
+    expect(b.x.equals(a.x.dividedBy(2))).toBe(true)
+    expect(b.y.equals(a.y.dividedBy(2))).toBe(true)
+    expect(b.z.equals(a.z.dividedBy(2))).toBe(true)
+    expect(b.w).toBe(-2)
+  })
+})
+// Then a / 2 = tuple(0.5, -1, 1.5, -2)

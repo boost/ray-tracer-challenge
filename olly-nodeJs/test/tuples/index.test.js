@@ -1,16 +1,16 @@
 import d from '../../src/utils/decimal'
-import {tuple, Point, Vector, addTuples, subtractTuples, negate} from '../../src/tuples'
+import {tuple, Point, equalTuples, isPoint, Vector, isVector, addTuples, subtractTuples, negate} from '../../src/tuples'
 
 describe('Creating tuples', () => {
   test('Point creates tuples with w=1.0', () => {
-    const point = new Point(4.0, 3.0, 2.0, 1.0)
+    const point = Point(4.0, 3.0, 2.0)
     expect(point.x.equals(4.0)).toBe(true)
     expect(point.y.equals(3.0)).toBe(true)
     expect(point.z.equals(2.0)).toBe(true)
     expect(point.w).toBe(1.0)
   })
   test('Vector creates tuples with w=0.0', () => {
-    const vector = new Vector(4.0, 3.0, 2.0, 0.0)
+    const vector = Vector(4.0, 3.0, 2.0, 0.0)
     expect(vector.x.equals(4.0)).toBe(true)
     expect(vector.y.equals(3.0)).toBe(true)
     expect(vector.z.equals(2.0)).toBe(true)
@@ -24,7 +24,7 @@ describe('Creating tuples', () => {
     expect(a.y.equals(-4.2)).toBe(true)
     expect(a.z.equals( 4.1)).toBe(true)
     expect(a.w).toBe(1.0)
-    expect(a instanceof Point).toBe(true)
+    expect(isPoint(a)).toBe(true)
   })
 
   test('A tuple with w=0.0 is a vector', () => {
@@ -34,7 +34,7 @@ describe('Creating tuples', () => {
     expect(a.y.equals(-4.2)).toBe(true)
     expect(a.z.equals( 4.1)).toBe(true)
     expect(a.w).toBe(0.0)
-    expect(a instanceof Vector).toBe(true)
+    expect(isVector(a)).toBe(true)
   })
 })
 
@@ -43,14 +43,14 @@ describe('equalTuples', () => {
     const a = tuple(4.3, 2.5, 9.2, 1.0)
     const b = tuple(4.3, 2.5, 9.2, 1.0)
 
-    expect(a.equalTo(b)).toBe(true)
+    expect(equalTuples(a,b)).toBe(true)
   })
 
   test('two different tupples return false', () => {
     const a = tuple(4.3, 2.5, 9.2, 1.0)
     const b = tuple(4.0, 2.5, 9.2, 1.0)
 
-    expect(a.equalTo(b)).toBe(false)
+    expect(equalTuples(a,b)).toBe(false)
   })
 })
 
@@ -61,7 +61,7 @@ describe('Add tupples', () => {
   describe('a vector and a point', () => {
     const newPoint = addTuples(point, vector1)
     test('returns a point', () => {
-      expect(newPoint instanceof Point).toBe(true)
+      expect(isPoint(newPoint)).toBe(true)
     })
 
     test('sums the xyz', () => {
@@ -75,8 +75,9 @@ describe('Add tupples', () => {
     let   vector1 = tuple(4.0,   2.0,  9.0, 0.0)
     const vector2 = tuple(444.0, 2.0,  4.0, 0.0)
     const newVector = addTuples(vector2, vector1)
+
     test('returns a vector', () => {
-      expect(newVector instanceof Vector).toBe(true)
+      expect(isVector(newVector)).toBe(true)
     })
 
     test('sums the xyz', () => {
@@ -95,7 +96,7 @@ describe('Subtract tupples', () => {
   describe('point - point', () => {
     const newPoint = subtractTuples(point, point2)
     test('returns a vector', () => {
-      expect(newPoint instanceof Vector).toBe(true)
+      expect(isPoint(newPoint)).toBe(true)
     })
 
     test('subtracts the xyz', () => {
@@ -108,7 +109,7 @@ describe('Subtract tupples', () => {
   describe('point - vector', () => {
     const newPoint = subtractTuples(point, vector1)
     test('returns a point', () => {
-      expect(newPoint instanceof Point).toBe(true)
+      expect(isPoint(newPoint)).toBe(true)
     })
 
     test('subtracts the xyz', () => {
@@ -123,7 +124,7 @@ describe('Subtract tupples', () => {
     const vector2  = tuple(4.0, 2.0, 4.0, 0.0)
     const newVector = subtractTuples(vector1, vector2)
     test('returns a vector', () => {
-      expect(newVector instanceof Vector).toBe(true)
+      expect(isVector(newVector)).toBe(true)
     })
 
     test('subtracts the xyz', () => {
@@ -138,7 +139,7 @@ describe('Subtract tupples', () => {
     const zero     = tuple(0.0, 0.0, 0.0, 0.0)
     const newVector = subtractTuples(zero, vector1)
     test('returns a vector', () => {
-      expect(newVector instanceof Vector).toBe(true)
+      expect(isVector(newVector)).toBe(true)
     })
 
     test('subtracts the xyz', () => {
@@ -156,7 +157,6 @@ describe('Negating a tuple', () => {
     expect(negativeTuple.x.equals(-3.0)).toBe(true)
     expect(negativeTuple.y.equals(-6.0)).toBe(true)
     expect(negativeTuple.z.equals(-9.0)).toBe(true)
-    // expect(negativeTuple.w).toBe(-1.0)
-    // This could be problematic.
+    expect(negativeTuple.w).toBe(-1.0)
   })
 })

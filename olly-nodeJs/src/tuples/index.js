@@ -1,39 +1,34 @@
 import d from '../utils/decimal'
 
-function Coordinate(x,y,z) {
-  this.x = d(x)
-  this.y = d(y)
-  this.z = d(z)
-  this.equalXYZ = tuple => {
-    if(this.x.equals(tuple.x) && this.y.equals(tuple.y) && this.z.equals(tuple.z)) {
-      return true
-    }
-  }
-}
-
 function Point(...args) {
-  Coordinate.call(this, ...args)
-  this.w = 1.0
-  this.equalTo = tuple => {
-    if(tuple instanceof Point && this.equalXYZ(tuple)) return true
-    return false
-  }
+  return tuple(...args, 1.0)
 }
 
 function Vector(...args) {
-  Coordinate.call(this, ...args)
-  this.w = 0.0
-  this.equalTo = tuple => {
-    if(tuple instanceof Point) return false
-    if(this.equalXYZ(tuple)) return true
-    return false
-  }
+  return tuple(...args, 0.0)
 }
 
 function tuple (x,y,z,w) {
-  if(w === 1.0) return new Point(x,y,z)
+  return {
+    x: d(x),
+    y: d(y),
+    z: d(z),
+    w: w
+  }
+}
 
-  return new Vector(x,y,z,w)
+function equalTuples(tuple1, tuple2) {
+  return (tuple1.x.equals(tuple2.x) &&
+          tuple1.y.equals(tuple2.y) &&
+          tuple1.z.equals(tuple2.z) &&
+          tuple1.w === tuple2.w)
+}
+
+function isPoint(tuple) {
+  return tuple.w === 1.0
+}
+function isVector(tuple) {
+  return tuple.w === 0.0
 }
 
 function addTuples(tuple1, tuple2) {
@@ -56,13 +51,13 @@ function subtractTuples(tuple1, tuple2) {
 
 function allPoints (...args) {
   return [...args].every(function (tuple) {
-    return tuple instanceof Point
+    return isPoint(tuple)
   })
 }
 
 function allVectors (...args) {
   return [...args].every(function (tuple) {
-    return tuple instanceof Vector
+    return isVector(tuple)
   })
 }
 
@@ -70,4 +65,4 @@ function negate (tuple1) {
   return tuple(tuple1.x.neg(), tuple1.y.neg(), tuple1.z.neg(), tuple.w)
 }
 
-export {tuple, Point, Vector, addTuples, subtractTuples, negate}
+export {tuple, equalTuples, Point, isPoint, Vector, isVector, addTuples, subtractTuples, negate}

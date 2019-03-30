@@ -1,7 +1,7 @@
-import { tuple } from '../tuples'
+import * as T from '../tuples'
 
 const Vector = (...args) => {
-  return tuple(...args, 0.0)
+  return T.tuple(...args, 0.0)
 }
 
 const isVector = (_tuple) => {

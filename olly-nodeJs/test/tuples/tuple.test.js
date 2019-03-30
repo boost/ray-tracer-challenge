@@ -1,18 +1,11 @@
 import d                  from '../../src/utils/decimal'
-import {
-  tuple,
-  equalTuples,
-  addTuples,
-  subtractTuples,
-  negate,
-  divide,
-  multiply}               from '../../src/tuples'
+import * as T             from '../../src/tuples'
 import { isPoint, Point } from '../../src/points'
 import { isVector }       from '../../src/vectors'
 
 describe('Creating tuples', () => {
   test('A tuple with w=1.0 is a point', () => {
-    const a = tuple(4.3, -4.2, 4.1, 1.0)
+    const a = T.tuple(4.3, -4.2, 4.1, 1.0)
 
     expect(a.x.equals( 4.3)).toBe(true)
     expect(a.y.equals(-4.2)).toBe(true)
@@ -22,7 +15,7 @@ describe('Creating tuples', () => {
   })
 
   test('A tuple with w=0.0 is a vector', () => {
-    const a = tuple(4.3, -4.2, 4.1, 0.0)
+    const a = T.tuple(4.3, -4.2, 4.1, 0.0)
 
     expect(a.x.equals( 4.3)).toBe(true)
     expect(a.y.equals(-4.2)).toBe(true)
@@ -34,26 +27,26 @@ describe('Creating tuples', () => {
 
 describe('equalTuples', () => {
   test('two identical tuples return true', () => {
-    const a = tuple(4.3, 2.5, 9.2, 1.0)
-    const b = tuple(4.3, 2.5, 9.2, 1.0)
+    const a = T.tuple(4.3, 2.5, 9.2, 1.0)
+    const b = T.tuple(4.3, 2.5, 9.2, 1.0)
 
-    expect(equalTuples(a,b)).toBe(true)
+    expect(T.equalTuples(a,b)).toBe(true)
   })
 
   test('two different tuples return false', () => {
-    const a = tuple(4.3, 2.5, 9.2, 1.0)
-    const b = tuple(4.0, 2.5, 9.2, 1.0)
+    const a = T.tuple(4.3, 2.5, 9.2, 1.0)
+    const b = T.tuple(4.0, 2.5, 9.2, 1.0)
 
-    expect(equalTuples(a,b)).toBe(false)
+    expect(T.equalTuples(a,b)).toBe(false)
   })
 })
 
 describe('Add tuples', () => {
-  const point   = tuple(4.0, 2.5, 9.2, 1.0)
-  const vector1 = tuple(4.0, 2.0, 9.24, 0.0)
+  const point   = T.tuple(4.0, 2.5, 9.2, 1.0)
+  const vector1 = T.tuple(4.0, 2.0, 9.24, 0.0)
 
   describe('a vector and a point', () => {
-    const newPoint = addTuples(point, vector1)
+    const newPoint = T.addTuples(point, vector1)
 
     test('returns a point', () => {
       expect(isPoint(newPoint)).toBe(true)
@@ -67,9 +60,9 @@ describe('Add tuples', () => {
   })
 
   describe('a vector and a vector', () => {
-    let   vector1   = tuple(4.0,   2.0,  9.0, 0.0)
-    const vector2   = tuple(444.0, 2.0,  4.0, 0.0)
-    const newVector = addTuples(vector2, vector1)
+    let   vector1   = T.tuple(4.0,   2.0,  9.0, 0.0)
+    const vector2   = T.tuple(444.0, 2.0,  4.0, 0.0)
+    const newVector = T.addTuples(vector2, vector1)
 
     test('returns a vector', () => {
       expect(isVector(newVector)).toBe(true)
@@ -86,10 +79,10 @@ describe('Add tuples', () => {
 describe('Subtract tuples', () => {
   const point    = Point(1.0, 4.0, 7.0)
   const point2   = Point(2.0, 5.0, 8.0)
-  const vector1  = tuple(3.0, 6.0, 9.0, 0.0)
+  const vector1  = T.tuple(3.0, 6.0, 9.0, 0.0)
 
   describe('subtracting a point from a point', () => {
-    const newPoint = subtractTuples(point, point2)
+    const newPoint = T.subtractTuples(point, point2)
 
     test('returns a vector', () => {
       expect(isVector(newPoint)).toBe(true)
@@ -103,7 +96,7 @@ describe('Subtract tuples', () => {
   })
 
   describe('subtracting a vector from a point', () => {
-    const newPoint = subtractTuples(point, vector1)
+    const newPoint = T.subtractTuples(point, vector1)
 
     test('returns a point', () => {
       expect(isPoint(newPoint)).toBe(true)
@@ -117,9 +110,9 @@ describe('Subtract tuples', () => {
   })
 
   describe('subtracting a vector from a vector', () => {
-    let   vector1   = tuple(3.0, 6.0, 9.0, 0.0)
-    const vector2   = tuple(4.0, 2.0, 4.0, 0.0)
-    const newVector = subtractTuples(vector1, vector2)
+    let   vector1   = T.tuple(3.0, 6.0, 9.0, 0.0)
+    const vector2   = T.tuple(4.0, 2.0, 4.0, 0.0)
+    const newVector = T.subtractTuples(vector1, vector2)
 
     test('returns a vector', () => {
       expect(isVector(newVector)).toBe(true)
@@ -133,9 +126,9 @@ describe('Subtract tuples', () => {
   })
 
   describe('subtracting a vector from zero', () => {
-    let   vector1   = tuple(3.0, 6.0, 9.0, 0.0)
-    const zero      = tuple(0.0, 0.0, 0.0, 0.0)
-    const newVector = subtractTuples(zero, vector1)
+    let   vector1   = T.tuple(3.0, 6.0, 9.0, 0.0)
+    const zero      = T.tuple(0.0, 0.0, 0.0, 0.0)
+    const newVector = T.subtractTuples(zero, vector1)
 
     test('returns a vector', () => {
       expect(isVector(newVector)).toBe(true)
@@ -150,8 +143,8 @@ describe('Subtract tuples', () => {
 })
 
 describe('Negating a tuple', () => {
-  let tuple1           = tuple(3.0, 6.0, 9.0, 1.0)
-  const negativeTuple  = negate(tuple1)
+  let tuple1           = T.tuple(3.0, 6.0, 9.0, 1.0)
+  const negativeTuple  = T.negate(tuple1)
 
   it('negates all the tuple values', () => {
     expect(negativeTuple.x.equals(-3.0)).toBe(true)
@@ -162,9 +155,9 @@ describe('Negating a tuple', () => {
 })
 
 describe('Multiplying a tuple by a scalar', () => {
-  const a = tuple(1, -2, 3, -4)
+  const a = T.tuple(1, -2, 3, -4)
   it('multipllies the tuple by the scalar', () => {
-    const b = multiply(a, 3.5)
+    const b = T.multiply(a, 3.5)
 
     expect(b.x.equals(a.x.times(3.5))).toBe(true)
     expect(b.y.equals(a.y.times(3.5))).toBe(true)
@@ -174,9 +167,9 @@ describe('Multiplying a tuple by a scalar', () => {
 })
 
 describe('Multiplying a tuple by a fraction', () => {
-  const a = tuple(1, -2, 3, -4)
+  const a = T.tuple(1, -2, 3, -4)
   it('multiplies the tuple by the fraction', () => {
-    const b = multiply(a, 0.5)
+    const b = T.multiply(a, 0.5)
 
     expect(b.x.equals(a.x.times(0.5))).toBe(true)
     expect(b.y.equals(a.y.times(0.5))).toBe(true)
@@ -186,9 +179,9 @@ describe('Multiplying a tuple by a fraction', () => {
 })
 
 describe('Dividing a tuple by a scalar', () => {
-  const a = tuple(1, -2, 3, -4)
+  const a = T.tuple(1, -2, 3, -4)
   it('divides the tuple by the scalar', () => {
-    const b = divide(a, 2)
+    const b = T.divide(a, 2)
 
     expect(b.x.equals(a.x.dividedBy(2))).toBe(true)
     expect(b.y.equals(a.y.dividedBy(2))).toBe(true)
@@ -196,4 +189,3 @@ describe('Dividing a tuple by a scalar', () => {
     expect(b.w).toBe(-2)
   })
 })
-// Then a / 2 = tuple(0.5, -1, 1.5, -2)

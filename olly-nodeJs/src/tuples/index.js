@@ -16,7 +16,6 @@ const equalTuples = (tuple1, tuple2) => (tuple1.x.equals(tuple2.x) &&
                                          tuple1.w === tuple2.w
 )
 
-
 const addTuples = (tuple1, tuple2) => {
   const newX = tuple1.x.plus(tuple2.x)
   const newY = tuple1.y.plus(tuple2.y)
@@ -40,4 +39,12 @@ const negate =  (tuple1) => (tuple(tuple1.x.neg(), tuple1.y.neg(), tuple1.z.neg(
 const multiply = (_tuple, scalar) => ((tuple(_tuple.x.times(scalar), _tuple.y.times(scalar), _tuple.z.times(scalar), _tuple.w * scalar)))
 const divide = (_tuple, scalar) => ((tuple(_tuple.x.dividedBy(scalar), _tuple.y.dividedBy(scalar), _tuple.z.dividedBy(scalar), _tuple.w / scalar)))
 
-export {tuple, equalTuples, addTuples, subtractTuples, negate, multiply, divide}
+export {
+  tuple,
+  equalTuples,
+  addTuples,
+  subtractTuples,
+  negate,
+  multiply,
+  divide
+}

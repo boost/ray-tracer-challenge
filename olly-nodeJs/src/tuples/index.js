@@ -45,4 +45,29 @@ function addTuples(tuple1, tuple2) {
   return new Point(newX, newY, newZ)
 }
 
-export {tuple, Point, Vector, addTuples}
+function subtractTuples(tuple1, tuple2) {
+  const newX = tuple1.x.minus(tuple2.x)
+  const newY = tuple1.y.minus(tuple2.y)
+  const newZ = tuple1.z.minus(tuple2.z)
+  if(allPoints(tuple1, tuple2) || allVectors(tuple1, tuple2)) return new Vector(newX, newY, newZ)
+
+  return new Point(newX, newY, newZ)
+}
+
+function allPoints (...args) {
+  return [...args].every(function (tuple) {
+    return tuple instanceof Point
+  })
+}
+
+function allVectors (...args) {
+  return [...args].every(function (tuple) {
+    return tuple instanceof Vector
+  })
+}
+
+function negate (tuple1) {
+  return tuple(tuple1.x.neg(), tuple1.y.neg(), tuple1.z.neg(), tuple.w)
+}
+
+export {tuple, Point, Vector, addTuples, subtractTuples, negate}

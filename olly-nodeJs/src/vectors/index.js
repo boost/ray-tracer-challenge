@@ -10,8 +10,13 @@ const isVector = (_tuple) => {
 
 const allVectors =  (...args) => ([...args].every( _tuple => (isVector(_tuple))))
 
+const magnitude = vector => {
+  return vector.x.toPower(2).plus(vector.y.toPower(2)).plus(vector.z.toPower(2)).plus(vector.w*vector.w).sqrt()
+}
+
 export {
   Vector,
   isVector,
-  allVectors
+  allVectors,
+  magnitude
 }

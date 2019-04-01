@@ -1,7 +1,7 @@
-import d                  from '../../src/utils/decimal'
-import * as T             from '../../src/tuples'
-import { isPoint, Point } from '../../src/points'
-import { isVector }       from '../../src/vectors'
+import d      from '../../src/utils/decimal'
+import * as T from '../../src/tuples'
+import * as P from '../../src/points'
+import * as V from '../../src/vectors'
 
 describe('Creating tuples', () => {
   test('A tuple with w=1.0 is a point', () => {
@@ -11,7 +11,7 @@ describe('Creating tuples', () => {
     expect(a.y.equals(-4.2)).toBe(true)
     expect(a.z.equals( 4.1)).toBe(true)
     expect(a.w.equals( 1.0)).toBe(true)
-    expect(isPoint(a)).toBe(true)
+    expect(P.isPoint(a)).toBe(true)
   })
 
   test('A tuple with w=0.0 is a vector', () => {
@@ -21,7 +21,7 @@ describe('Creating tuples', () => {
     expect(a.y.equals(-4.2)).toBe(true)
     expect(a.z.equals( 4.1)).toBe(true)
     expect(a.w.equals( 0.0)).toBe(true)
-    expect(isVector(a)).toBe(true)
+    expect(V.isVector(a)).toBe(true)
   })
 })
 
@@ -49,7 +49,7 @@ describe('Add tuples', () => {
     const newPoint = T.addTuples(point, vector1)
 
     test('returns a point', () => {
-      expect(isPoint(newPoint)).toBe(true)
+      expect(P.isPoint(newPoint)).toBe(true)
     })
 
     test('sums the xyz', () => {
@@ -65,7 +65,7 @@ describe('Add tuples', () => {
     const newVector = T.addTuples(vector2, vector1)
 
     test('returns a vector', () => {
-      expect(isVector(newVector)).toBe(true)
+      expect(V.isVector(newVector)).toBe(true)
     })
 
     test('sums the xyz', () => {
@@ -77,15 +77,15 @@ describe('Add tuples', () => {
 })
 
 describe('Subtract tuples', () => {
-  const point    = Point(1.0, 4.0, 7.0)
-  const point2   = Point(2.0, 5.0, 8.0)
+  const point    = P.point(1.0, 4.0, 7.0)
+  const point2   = P.point(2.0, 5.0, 8.0)
   const vector1  = T.tuple(3.0, 6.0, 9.0, 0.0)
 
   describe('subtracting a point from a point', () => {
     const newPoint = T.subtractTuples(point, point2)
 
     test('returns a vector', () => {
-      expect(isVector(newPoint)).toBe(true)
+      expect(V.isVector(newPoint)).toBe(true)
     })
 
     test('subtracts the xyz', () => {
@@ -99,7 +99,7 @@ describe('Subtract tuples', () => {
     const newPoint = T.subtractTuples(point, vector1)
 
     test('returns a point', () => {
-      expect(isPoint(newPoint)).toBe(true)
+      expect(P.isPoint(newPoint)).toBe(true)
     })
 
     test('subtracts the xyz', () => {
@@ -115,7 +115,7 @@ describe('Subtract tuples', () => {
     const newVector = T.subtractTuples(vector1, vector2)
 
     test('returns a vector', () => {
-      expect(isVector(newVector)).toBe(true)
+      expect(V.isVector(newVector)).toBe(true)
     })
 
     test('subtracts the xyz', () => {
@@ -131,7 +131,7 @@ describe('Subtract tuples', () => {
     const newVector = T.subtractTuples(zero, vector1)
 
     test('returns a vector', () => {
-      expect(isVector(newVector)).toBe(true)
+      expect(V.isVector(newVector)).toBe(true)
     })
 
     test('subtracts the xyz', () => {

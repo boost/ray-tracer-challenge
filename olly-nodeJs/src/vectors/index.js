@@ -1,23 +1,23 @@
+import d      from '../utils/decimal'
 import * as T from '../tuples'
-import d from '../utils/decimal'
 
-const Vector = (...args) => {
+const vector = (...args) => {
   return T.tuple(...args, d(0.0))
 }
 
-const isVector = (_tuple) => {
-  return _tuple.w.equals(0.0)
+const isVector = tuple => {
+  return tuple.w.equals(0.0)
 }
 
-const allVectors =  (...args) => ([...args].every( _tuple => (isVector(_tuple))))
+const all =  ary => (ary.every( tuple => (isVector(tuple))))
 
-const magnitude = vector => {
-  return vector.x.toPower(2).plus(vector.y.toPower(2)).plus(vector.z.toPower(2)).plus(vector.w.toPower(2)).sqrt()
+const magnitude = v => {
+  return v.x.toPower(2).plus(v.y.toPower(2)).plus(v.z.toPower(2)).plus(v.w.toPower(2)).sqrt()
 }
 
 export {
-  Vector,
+  vector,
   isVector,
-  allVectors,
+  all,
   magnitude
 }

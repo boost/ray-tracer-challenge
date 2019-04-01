@@ -7,37 +7,38 @@ const tuple =  (x,y,z,w) => ({
   x: d(x),
   y: d(y),
   z: d(z),
-  w: w
+  w: d(w)
 })
 
-const equalTuples = (tuple1, tuple2) => (tuple1.x.equals(tuple2.x) &&
-                                         tuple1.y.equals(tuple2.y) &&
-                                         tuple1.z.equals(tuple2.z) &&
-                                         tuple1.w === tuple2.w
+const equalTuples = (t1, t2) => (t1.x.equals(t2.x) &&
+                                         t1.y.equals(t2.y) &&
+                                         t1.z.equals(t2.z) &&
+                                         t1.w.equals(t2.w)
 )
 
-const addTuples = (tuple1, tuple2) => {
-  const newX = tuple1.x.plus(tuple2.x)
-  const newY = tuple1.y.plus(tuple2.y)
-  const newZ = tuple1.z.plus(tuple2.z)
+const addTuples = (t1, t2) => {
+  const newX = t1.x.plus(t2.x)
+  const newY = t1.y.plus(t2.y)
+  const newZ = t1.z.plus(t2.z)
 
-  if(tuple1.w + tuple2.w === 0.0) return Vector(newX, newY, newZ)
+  if(t1.w.plus(t2.w).equals(0.0)) return Vector(newX, newY, newZ)
   return Point(newX, newY, newZ)
 }
 
-const subtractTuples = (tuple1, tuple2) => {
-  const newX = tuple1.x.minus(tuple2.x)
-  const newY = tuple1.y.minus(tuple2.y)
-  const newZ = tuple1.z.minus(tuple2.z)
-  if(allPoints(tuple1, tuple2) || allVectors(tuple1, tuple2)) return Vector(newX, newY, newZ)
+const subtractTuples = (t1, t2) => {
+  const newX = t1.x.minus(t2.x)
+  const newY = t1.y.minus(t2.y)
+  const newZ = t1.z.minus(t2.z)
+  if(allPoints(t1, t2) || allVectors(t1, t2)) return Vector(newX, newY, newZ)
 
   return Point(newX, newY, newZ)
 }
 
-const negate =  (tuple1) => (tuple(tuple1.x.neg(), tuple1.y.neg(), tuple1.z.neg(), 0 - tuple1.w))
+const negate =  t1 => (tuple(t1.x.neg(), t1.y.neg(), t1.z.neg(), t1.w.neg()))
 
-const multiply = (_tuple, scalar) => ((tuple(_tuple.x.times(scalar), _tuple.y.times(scalar), _tuple.z.times(scalar), _tuple.w * scalar)))
-const divide = (_tuple, scalar) => ((tuple(_tuple.x.dividedBy(scalar), _tuple.y.dividedBy(scalar), _tuple.z.dividedBy(scalar), _tuple.w / scalar)))
+const multiply = (t, scalar) => ((tuple(t.x.times(scalar), t.y.times(scalar), t.z.times(scalar), t.w.times(scalar))))
+
+const divide = (t, scalar) => ((tuple(t.x.dividedBy(scalar), t.y.dividedBy(scalar), t.z.dividedBy(scalar), t.w.dividedBy(scalar))))
 
 export {
   tuple,

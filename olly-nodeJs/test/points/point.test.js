@@ -7,6 +7,6 @@ describe('Creating a point', () => {
     expect(point.x.equals(4.0)).toBe(true)
     expect(point.y.equals(3.0)).toBe(true)
     expect(point.z.equals(2.0)).toBe(true)
-    expect(point.w).toBe(1.0)
+    expect(point.w.equals(1.0)).toBe(true)
   })
 })

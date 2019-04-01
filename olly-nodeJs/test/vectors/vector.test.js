@@ -8,7 +8,7 @@ describe('Creating a vectpr', () => {
     expect(vector.x.equals(4.0)).toBe(true)
     expect(vector.y.equals(3.0)).toBe(true)
     expect(vector.z.equals(2.0)).toBe(true)
-    expect(vector.w).toBe(0.0)
+    expect(vector.w.equals(0.0)).toBe(true)
   })
 })
 

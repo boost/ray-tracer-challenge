@@ -10,7 +10,7 @@ describe('Creating tuples', () => {
     expect(a.x.equals( 4.3)).toBe(true)
     expect(a.y.equals(-4.2)).toBe(true)
     expect(a.z.equals( 4.1)).toBe(true)
-    expect(a.w).toBe(1.0)
+    expect(a.w.equals( 1.0)).toBe(true)
     expect(isPoint(a)).toBe(true)
   })
 
@@ -20,7 +20,7 @@ describe('Creating tuples', () => {
     expect(a.x.equals( 4.3)).toBe(true)
     expect(a.y.equals(-4.2)).toBe(true)
     expect(a.z.equals( 4.1)).toBe(true)
-    expect(a.w).toBe(0.0)
+    expect(a.w.equals( 0.0)).toBe(true)
     expect(isVector(a)).toBe(true)
   })
 })
@@ -120,8 +120,8 @@ describe('Subtract tuples', () => {
 
     test('subtracts the xyz', () => {
       expect(newVector.x.equals(-1.0)).toBe(true)
-      expect(newVector.y.equals(4.0 )).toBe(true)
-      expect(newVector.z.equals(5.0 )).toBe(true)
+      expect(newVector.y.equals( 4.0)).toBe(true)
+      expect(newVector.z.equals( 5.0)).toBe(true)
     })
   })
 
@@ -150,7 +150,7 @@ describe('Negating a tuple', () => {
     expect(negativeTuple.x.equals(-3.0)).toBe(true)
     expect(negativeTuple.y.equals(-6.0)).toBe(true)
     expect(negativeTuple.z.equals(-9.0)).toBe(true)
-    expect(negativeTuple.w).toBe(-1.0)
+    expect(negativeTuple.w.equals(-1.0)).toBe(true)
   })
 })
 
@@ -162,7 +162,7 @@ describe('Multiplying a tuple by a scalar', () => {
     expect(b.x.equals(a.x.times(3.5))).toBe(true)
     expect(b.y.equals(a.y.times(3.5))).toBe(true)
     expect(b.z.equals(a.z.times(3.5))).toBe(true)
-    expect(b.w).toBe(-14)
+    expect(b.w.equals(a.w.times(3.5))).toBe(true)
   })
 })
 
@@ -174,7 +174,7 @@ describe('Multiplying a tuple by a fraction', () => {
     expect(b.x.equals(a.x.times(0.5))).toBe(true)
     expect(b.y.equals(a.y.times(0.5))).toBe(true)
     expect(b.z.equals(a.z.times(0.5))).toBe(true)
-    expect(b.w).toBe(-2)
+    expect(b.w.equals(a.w.times(0.5))).toBe(true)
   })
 })
 
@@ -186,6 +186,6 @@ describe('Dividing a tuple by a scalar', () => {
     expect(b.x.equals(a.x.dividedBy(2))).toBe(true)
     expect(b.y.equals(a.y.dividedBy(2))).toBe(true)
     expect(b.z.equals(a.z.dividedBy(2))).toBe(true)
-    expect(b.w).toBe(-2)
+    expect(b.w.equals(a.w.dividedBy(2))).toBe(true)
   })
 })

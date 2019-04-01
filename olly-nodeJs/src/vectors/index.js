@@ -15,9 +15,15 @@ const magnitude = v => {
   return v.x.toPower(2).plus(v.y.toPower(2)).plus(v.z.toPower(2)).plus(v.w.toPower(2)).sqrt()
 }
 
+const normalise = v => {
+  let m = magnitude(v)
+  return T.tuple(v.x.dividedBy(m), v.y.dividedBy(m), v.z.dividedBy(m), v.w.dividedBy(m))
+}
+
 export {
   vector,
   isVector,
   all,
-  magnitude
+  magnitude,
+  normalise
 }

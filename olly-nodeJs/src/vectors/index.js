@@ -20,10 +20,15 @@ const normalise = v => {
   return T.tuple(v.x.dividedBy(m), v.y.dividedBy(m), v.z.dividedBy(m), v.w.dividedBy(m))
 }
 
+const dot = (a,b) => {
+  return a.x.times(b.x).plus(a.y.times(b.y)).plus(a.z.times(b.z)).plus(a.w.times(b.w))
+}
+
 export {
   vector,
   isVector,
   all,
   magnitude,
-  normalise
+  normalise,
+  dot
 }

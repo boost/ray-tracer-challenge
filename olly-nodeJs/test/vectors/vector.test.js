@@ -72,3 +72,11 @@ describe('Vector normalisation', () => {
     })
   })
 })
+
+describe('The dot product of two vectors', () => {
+  it('sums the products of the corresponding component of each vector', () => {
+    const a = V.vector(1, 2, 3)
+    const b = V.vector(2, 3, 4)
+    expect(V.dot(a,b)).toEqual(d(20))
+  })
+})

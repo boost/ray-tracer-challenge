@@ -10,12 +10,14 @@
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.5.0",
     "eslint": "^5.15.3",
-    "jest": "^24.5.0"
+    "jest": "^24.5.0",
+    "esm": "^3.2.22"
   },
   "scripts": {
     "test": "jest --verbose",
     "test:watch": "node --inspect-brk node_modules/.bin/jest --runInBand --watchAll",
-    "lint": "./node_modules/.bin/eslint . --ext .js"
+    "lint": "./node_modules/.bin/eslint . --ext .js",
+    "projectile": "node -r esm projectile.js"
   },
   "dependencies": {
     "decimal.js": "^10.1.1"

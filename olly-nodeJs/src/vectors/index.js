@@ -17,11 +17,22 @@ const magnitude = v => {
 
 const normalise = v => {
   let m = magnitude(v)
-  return T.tuple(v.x.dividedBy(m), v.y.dividedBy(m), v.z.dividedBy(m), v.w.dividedBy(m))
+  return T.tuple(
+    v.x.dividedBy(m),
+    v.y.dividedBy(m),
+    v.z.dividedBy(m),
+    v.w.dividedBy(m))
 }
 
 const dot = (a,b) => {
   return a.x.times(b.x).plus(a.y.times(b.y)).plus(a.z.times(b.z)).plus(a.w.times(b.w))
+}
+
+const cross = (a,b) => {
+  return vector(
+    a.y.times(b.z).minus(a.z.times(b.y)),
+    a.z.times(b.x).minus(a.x.times(b.z)),
+    a.x.times(b.y).minus(a.y.times(b.x)))
 }
 
 export {
@@ -30,5 +41,6 @@ export {
   all,
   magnitude,
   normalise,
-  dot
+  dot,
+  cross
 }

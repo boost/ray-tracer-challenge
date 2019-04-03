@@ -80,3 +80,16 @@ describe('The dot product of two vectors', () => {
     expect(V.dot(a,b)).toEqual(d(20))
   })
 })
+
+describe('The cross product of two vectors', () => {
+  const a = V.vector(1, 2, 3)
+  const b = V.vector(2, 3, 4)
+  it('cross(a, b) = vector(-1, 2, -1)', () => {
+    expect(V.cross(a, b)).toEqual(V.vector(-1, 2, -1))
+  })
+
+  it('And cross(b, a) = vector(1, -2, 1)', () => {
+    expect(V.cross(b,a)).toEqual(V.vector(1, -2, 1))
+  })
+})
+

@@ -12,7 +12,7 @@ const isVector = tuple => {
 const all =  ary => (ary.every( tuple => (isVector(tuple))))
 
 const magnitude = v => {
-  return v.x.toPower(2).plus(v.y.toPower(2)).plus(v.z.toPower(2)).plus(v.w.toPower(2)).sqrt()
+  return v.x.toPower(2).plus(v.y.toPower(2)).plus(v.z.toPower(2)).plus(v.w.toPower(2)).sqrt().toNumber()
 }
 
 const normalise = v => {
@@ -25,7 +25,7 @@ const normalise = v => {
 }
 
 const dot = (a,b) => {
-  return a.x.times(b.x).plus(a.y.times(b.y)).plus(a.z.times(b.z)).plus(a.w.times(b.w))
+  return a.x.times(b.x).plus(a.y.times(b.y)).plus(a.z.times(b.z)).plus(a.w.times(b.w)).toNumber()
 }
 
 const cross = (a,b) => {

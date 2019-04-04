@@ -1,4 +1,3 @@
-import d      from '../../src/utils/decimal'
 import * as T from '../../src/tuples'
 import * as P from '../../src/points'
 import * as V from '../../src/vectors'
@@ -7,20 +6,20 @@ describe('Creating tuples', () => {
   test('A tuple with w=1.0 is a point', () => {
     const a = T.tuple(4.3, -4.2, 4.1, 1.0)
 
-    expect(a.x.equals( 4.3)).toBe(true)
-    expect(a.y.equals(-4.2)).toBe(true)
-    expect(a.z.equals( 4.1)).toBe(true)
-    expect(a.w.equals( 1.0)).toBe(true)
+    expect(a.x.toNumber()).toEqual( 4.3)
+    expect(a.y.toNumber()).toEqual(-4.2)
+    expect(a.z.toNumber()).toEqual( 4.1)
+    expect(a.w.toNumber()).toEqual( 1.0)
     expect(P.isPoint(a)).toBe(true)
   })
 
   test('A tuple with w=0.0 is a vector', () => {
     const a = T.tuple(4.3, -4.2, 4.1, 0.0)
 
-    expect(a.x.equals( 4.3)).toBe(true)
-    expect(a.y.equals(-4.2)).toBe(true)
-    expect(a.z.equals( 4.1)).toBe(true)
-    expect(a.w.equals( 0.0)).toBe(true)
+    expect(a.x.toNumber()).toEqual( 4.3)
+    expect(a.y.toNumber()).toEqual(-4.2)
+    expect(a.z.toNumber()).toEqual( 4.1)
+    expect(a.w.toNumber()).toEqual( 0.0)
     expect(V.isVector(a)).toBe(true)
   })
 })
@@ -53,9 +52,9 @@ describe('Add tuples', () => {
     })
 
     test('sums the xyz', () => {
-      expect(newPoint.x.equals( d(4.0).plus(d(4.0))  )).toBe(true)
-      expect(newPoint.y.equals( d(2.5).plus(d(2.0))  )).toBe(true)
-      expect(newPoint.z.equals( d(9.2).plus(d(9.24)) )).toBe(true)
+      expect(newPoint.x.toNumber()).toEqual(8.0)
+      expect(newPoint.y.toNumber()).toEqual(4.5)
+      expect(newPoint.z.toNumber()).toEqual(18.44)
     })
   })
 
@@ -69,9 +68,9 @@ describe('Add tuples', () => {
     })
 
     test('sums the xyz', () => {
-      expect(newVector.x.equals(448.0)).toBe(true)
-      expect(newVector.y.equals(4.0  )).toBe(true)
-      expect(newVector.z.equals(13.0 )).toBe(true)
+      expect(newVector.x.toNumber()).toEqual(448.0)
+      expect(newVector.y.toNumber()).toEqual(4.0  )
+      expect(newVector.z.toNumber()).toEqual(13.0 )
     })
   })
 })
@@ -89,9 +88,9 @@ describe('Subtract tuples', () => {
     })
 
     test('subtracts the xyz', () => {
-      expect(newPoint.x.equals(-1.0)).toBe(true)
-      expect(newPoint.y.equals(-1.0)).toBe(true)
-      expect(newPoint.z.equals(-1.0)).toBe(true)
+      expect(newPoint.x.toNumber()).toEqual(-1.0)
+      expect(newPoint.y.toNumber()).toEqual(-1.0)
+      expect(newPoint.z.toNumber()).toEqual(-1.0)
     })
   })
 
@@ -103,9 +102,9 @@ describe('Subtract tuples', () => {
     })
 
     test('subtracts the xyz', () => {
-      expect(newPoint.x.equals(-2.0)).toBe(true)
-      expect(newPoint.y.equals(-2.0)).toBe(true)
-      expect(newPoint.z.equals(-2.0)).toBe(true)
+      expect(newPoint.x.toNumber()).toEqual(-2.0)
+      expect(newPoint.y.toNumber()).toEqual(-2.0)
+      expect(newPoint.z.toNumber()).toEqual(-2.0)
     })
   })
 
@@ -119,9 +118,9 @@ describe('Subtract tuples', () => {
     })
 
     test('subtracts the xyz', () => {
-      expect(newVector.x.equals(-1.0)).toBe(true)
-      expect(newVector.y.equals( 4.0)).toBe(true)
-      expect(newVector.z.equals( 5.0)).toBe(true)
+      expect(newVector.x.toNumber()).toEqual(-1.0)
+      expect(newVector.y.toNumber()).toEqual( 4.0)
+      expect(newVector.z.toNumber()).toEqual( 5.0)
     })
   })
 
@@ -135,9 +134,9 @@ describe('Subtract tuples', () => {
     })
 
     test('subtracts the xyz', () => {
-      expect(newVector.x.equals(-3.0)).toBe(true)
-      expect(newVector.y.equals(-6.0)).toBe(true)
-      expect(newVector.z.equals(-9.0)).toBe(true)
+      expect(newVector.x.toNumber()).toEqual(-3.0)
+      expect(newVector.y.toNumber()).toEqual(-6.0)
+      expect(newVector.z.toNumber()).toEqual(-9.0)
     })
   })
 })
@@ -147,10 +146,10 @@ describe('Negating a tuple', () => {
   const negativeTuple  = T.negate(tuple1)
 
   it('negates all the tuple values', () => {
-    expect(negativeTuple.x.equals(-3.0)).toBe(true)
-    expect(negativeTuple.y.equals(-6.0)).toBe(true)
-    expect(negativeTuple.z.equals(-9.0)).toBe(true)
-    expect(negativeTuple.w.equals(-1.0)).toBe(true)
+    expect(negativeTuple.x.toNumber()).toEqual(-3.0)
+    expect(negativeTuple.y.toNumber()).toEqual(-6.0)
+    expect(negativeTuple.z.toNumber()).toEqual(-9.0)
+    expect(negativeTuple.w.toNumber()).toEqual(-1.0)
   })
 })
 
@@ -159,10 +158,10 @@ describe('Multiplying a tuple by a scalar', () => {
   it('multipllies the tuple by the scalar', () => {
     const b = T.multiply(a, 3.5)
 
-    expect(b.x.equals(a.x.times(3.5))).toBe(true)
-    expect(b.y.equals(a.y.times(3.5))).toBe(true)
-    expect(b.z.equals(a.z.times(3.5))).toBe(true)
-    expect(b.w.equals(a.w.times(3.5))).toBe(true)
+    expect(b.x.toNumber()).toEqual(a.x.toNumber() * 3.5)
+    expect(b.y.toNumber()).toEqual(a.y.toNumber() * 3.5)
+    expect(b.z.toNumber()).toEqual(a.z.toNumber() * 3.5)
+    expect(b.w.toNumber()).toEqual(a.w.toNumber() * 3.5)
   })
 })
 
@@ -171,10 +170,10 @@ describe('Multiplying a tuple by a fraction', () => {
   it('multiplies the tuple by the fraction', () => {
     const b = T.multiply(a, 0.5)
 
-    expect(b.x.equals(a.x.times(0.5))).toBe(true)
-    expect(b.y.equals(a.y.times(0.5))).toBe(true)
-    expect(b.z.equals(a.z.times(0.5))).toBe(true)
-    expect(b.w.equals(a.w.times(0.5))).toBe(true)
+    expect(b.x.toNumber()).toEqual(a.x.toNumber() * 0.5)
+    expect(b.y.toNumber()).toEqual(a.y.toNumber() * 0.5)
+    expect(b.z.toNumber()).toEqual(a.z.toNumber() * 0.5)
+    expect(b.w.toNumber()).toEqual(a.w.toNumber() * 0.5)
   })
 })
 
@@ -183,9 +182,9 @@ describe('Dividing a tuple by a scalar', () => {
   it('divides the tuple by the scalar', () => {
     const b = T.divide(a, 2)
 
-    expect(b.x.equals(a.x.dividedBy(2))).toBe(true)
-    expect(b.y.equals(a.y.dividedBy(2))).toBe(true)
-    expect(b.z.equals(a.z.dividedBy(2))).toBe(true)
-    expect(b.w.equals(a.w.dividedBy(2))).toBe(true)
+    expect(b.x.toNumber()).toEqual(a.x.toNumber() / 2)
+    expect(b.y.toNumber()).toEqual(a.y.toNumber() / 2)
+    expect(b.z.toNumber()).toEqual(a.z.toNumber() / 2)
+    expect(b.w.toNumber()).toEqual(a.w.toNumber() / 2)
   })
 })

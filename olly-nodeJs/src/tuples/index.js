@@ -6,7 +6,7 @@ const tuple =  (x,y,z,w) => ({
   x: d(x),
   y: d(y),
   z: d(z),
-  w: d(w)
+  w: w != null ? d(w) : null
 })
 
 const equalTuples = (t1, t2) => (t1.x.equals(t2.x) &&

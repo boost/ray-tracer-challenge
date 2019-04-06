@@ -1,11 +1,11 @@
-import * as T from '../tuples'
+import {tuple, w} from '../tuples'
 import d from '../utils/decimal'
 
-const point = (...args) => (T.tuple(...args, d(1.0)))
+const point = (...args) => tuple(...args, d(1.0))
 
-const isPoint = tuple => (tuple.w.equals(1.0))
+const isPoint = t => w(t).equals(1.0)
 
-const all = ary => (ary.every(tuple => (isPoint(tuple))))
+const all = ary => ary.every(t => (isPoint(t)))
 
 export {
   point,

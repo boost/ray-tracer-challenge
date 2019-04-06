@@ -1,13 +1,14 @@
-import * as V from '../../src/vectors'
+import * as V    from '../../src/vectors'
+import {x,y,z,w} from '../../src/tuples'
 
 describe('Creating a vectpr', () => {
 
   test('creates tuple with w=0.0', () => {
     const vector = V.vector(4.0, 3.0, 2.0, 0.0)
-    expect(vector.x.toNumber()).toEqual(4.0)
-    expect(vector.y.toNumber()).toEqual(3.0)
-    expect(vector.z.toNumber()).toEqual(2.0)
-    expect(vector.w.toNumber()).toEqual(0.0)
+    expect(x(vector).toNumber()).toEqual(4.0)
+    expect(y(vector).toNumber()).toEqual(3.0)
+    expect(z(vector).toNumber()).toEqual(2.0)
+    expect(w(vector).toNumber()).toEqual(0.0)
   })
 })
 
@@ -57,9 +58,9 @@ describe('Vector normalisation', () => {
 
     it('returns vector(1/√14, 2/√14, 3/√14)', () => {
       const normalisedVector = V.normalise(vector)
-      expect(normalisedVector.x.toNumber()).toEqual(1 / Math.sqrt(14))
-      expect(normalisedVector.y.toNumber()).toEqual(2 / Math.sqrt(14))
-      expect(normalisedVector.z.toNumber()).toEqual(3 / Math.sqrt(14))
+      expect(x(normalisedVector).toNumber()).toEqual(1 / Math.sqrt(14))
+      expect(y(normalisedVector).toNumber()).toEqual(2 / Math.sqrt(14))
+      expect(z(normalisedVector).toNumber()).toEqual(3 / Math.sqrt(14))
     })
   })
 

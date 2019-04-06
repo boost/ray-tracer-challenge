@@ -2,49 +2,53 @@ import d      from '../utils/decimal'
 import * as V from '../vectors'
 import * as P from '../points'
 
-const tuple =  (x,y,z,w) => ({
-  x: d(x),
-  y: d(y),
-  z: d(z),
-  w: w != null ? d(w) : null
-})
+const tuple =  (x,y,z,w) => ([ d(x), d(y), d(z), w != null ? d(w) : null])
 
-const equalTuples = (t1, t2) => (t1.x.equals(t2.x) &&
-                                 t1.y.equals(t2.y) &&
-                                 t1.z.equals(t2.z) &&
-                                 t1.w.equals(t2.w)
+const x = t => (t[0])
+const y = t => (t[1])
+const z = t => (t[2])
+const w = t => (t[3])
+
+const equalTuples = (t1, t2) => (x(t1).equals(x(t2)) &&
+                                 y(t1).equals(y(t2)) &&
+                                 z(t1).equals(z(t2)) &&
+                                 w(t1).equals(w(t2))
 )
 
 const addTuples = (t1, t2) => {
-  const newX = t1.x.plus(t2.x)
-  const newY = t1.y.plus(t2.y)
-  const newZ = t1.z.plus(t2.z)
+  const newX = x(t1).plus(x(t2))
+  const newY = y(t1).plus(y(t2))
+  const newZ = z(t1).plus(z(t2))
 
-  if(t1.w.plus(t2.w).equals(0.0)) return V.vector(newX, newY, newZ)
+  if(w(t1).plus(w(t2)).equals(0.0)) return V.vector(newX, newY, newZ)
   return P.point(newX, newY, newZ)
 }
 
 const subtractTuples = (t1, t2) => {
-  const newX = t1.x.minus(t2.x)
-  const newY = t1.y.minus(t2.y)
-  const newZ = t1.z.minus(t2.z)
+  const newX = x(t1).minus(x(t2))
+  const newY = y(t1).minus(y(t2))
+  const newZ = z(t1).minus(z(t2))
   if(P.all([t1, t2]) || V.all([t1, t2])) return V.vector(newX, newY, newZ)
 
   return P.point(newX, newY, newZ)
 }
 
-const negate =  t1 => (tuple(t1.x.neg(), t1.y.neg(), t1.z.neg(), t1.w.neg()))
+const negate =  t1 => (tuple( x(t1).neg(), y(t1).neg(), z(t1).neg(), w(t1).neg()) )
 
 const multiply = (t, scalar) => {
-  return tuple(t.x.times(scalar), t.y.times(scalar), t.z.times(scalar), t.w.times(scalar))
+  return tuple(x(t).times(scalar), y(t).times(scalar), z(t).times(scalar), w(t).times(scalar))
 }
 
 const divide = (t, scalar) => {
-  return tuple(t.x.dividedBy(scalar), t.y.dividedBy(scalar), t.z.dividedBy(scalar), t.w.dividedBy(scalar))
+  return tuple(x(t).dividedBy(scalar), y(t).dividedBy(scalar), z(t).dividedBy(scalar), w(t).dividedBy(scalar))
 }
 
 export {
   tuple,
+  x,
+  y,
+  z,
+  w,
   equalTuples,
   addTuples,
   subtractTuples,

@@ -21,7 +21,7 @@ const tick = (env, proj) => {
 let proj = projectile(P.point(0.0, 1.0, 0.0), V.normalise(V.vector(1, 1, 0.0)))
 
 const positions = [proj]
-while (proj.position.y.greaterThan(0.0)) {
+while (T.y(proj.position).greaterThan(0.0)) {
   proj = tick(env, proj)
   positions.push(proj)
 }

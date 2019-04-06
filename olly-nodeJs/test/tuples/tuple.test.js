@@ -6,20 +6,20 @@ describe('Creating tuples', () => {
   test('A tuple with w=1.0 is a point', () => {
     const a = T.tuple(4.3, -4.2, 4.1, 1.0)
 
-    expect(a.x.toNumber()).toEqual( 4.3)
-    expect(a.y.toNumber()).toEqual(-4.2)
-    expect(a.z.toNumber()).toEqual( 4.1)
-    expect(a.w.toNumber()).toEqual( 1.0)
+    expect(T.x(a).toNumber()).toEqual( 4.3)
+    expect(T.y(a).toNumber()).toEqual(-4.2)
+    expect(T.z(a).toNumber()).toEqual( 4.1)
+    expect(T.w(a).toNumber()).toEqual( 1.0)
     expect(P.isPoint(a)).toBe(true)
   })
 
   test('A tuple with w=0.0 is a vector', () => {
     const a = T.tuple(4.3, -4.2, 4.1, 0.0)
 
-    expect(a.x.toNumber()).toEqual( 4.3)
-    expect(a.y.toNumber()).toEqual(-4.2)
-    expect(a.z.toNumber()).toEqual( 4.1)
-    expect(a.w.toNumber()).toEqual( 0.0)
+    expect(T.x(a).toNumber()).toEqual( 4.3)
+    expect(T.y(a).toNumber()).toEqual(-4.2)
+    expect(T.z(a).toNumber()).toEqual( 4.1)
+    expect(T.w(a).toNumber()).toEqual( 0.0)
     expect(V.isVector(a)).toBe(true)
   })
 })
@@ -52,9 +52,9 @@ describe('Add tuples', () => {
     })
 
     test('sums the xyz', () => {
-      expect(newPoint.x.toNumber()).toEqual(8.0)
-      expect(newPoint.y.toNumber()).toEqual(4.5)
-      expect(newPoint.z.toNumber()).toEqual(18.44)
+      expect(T.x(newPoint).toNumber()).toEqual(8.0)
+      expect(T.y(newPoint).toNumber()).toEqual(4.5)
+      expect(T.z(newPoint).toNumber()).toEqual(18.44)
     })
   })
 
@@ -68,9 +68,9 @@ describe('Add tuples', () => {
     })
 
     test('sums the xyz', () => {
-      expect(newVector.x.toNumber()).toEqual(448.0)
-      expect(newVector.y.toNumber()).toEqual(4.0  )
-      expect(newVector.z.toNumber()).toEqual(13.0 )
+      expect(T.x(newVector).toNumber()).toEqual(448.0)
+      expect(T.y(newVector).toNumber()).toEqual(4.0  )
+      expect(T.z(newVector).toNumber()).toEqual(13.0 )
     })
   })
 })
@@ -88,9 +88,9 @@ describe('Subtract tuples', () => {
     })
 
     test('subtracts the xyz', () => {
-      expect(newPoint.x.toNumber()).toEqual(-1.0)
-      expect(newPoint.y.toNumber()).toEqual(-1.0)
-      expect(newPoint.z.toNumber()).toEqual(-1.0)
+      expect(T.x(newPoint).toNumber()).toEqual(-1.0)
+      expect(T.y(newPoint).toNumber()).toEqual(-1.0)
+      expect(T.z(newPoint).toNumber()).toEqual(-1.0)
     })
   })
 
@@ -102,9 +102,9 @@ describe('Subtract tuples', () => {
     })
 
     test('subtracts the xyz', () => {
-      expect(newPoint.x.toNumber()).toEqual(-2.0)
-      expect(newPoint.y.toNumber()).toEqual(-2.0)
-      expect(newPoint.z.toNumber()).toEqual(-2.0)
+      expect(T.x(newPoint).toNumber()).toEqual(-2.0)
+      expect(T.y(newPoint).toNumber()).toEqual(-2.0)
+      expect(T.z(newPoint).toNumber()).toEqual(-2.0)
     })
   })
 
@@ -118,9 +118,9 @@ describe('Subtract tuples', () => {
     })
 
     test('subtracts the xyz', () => {
-      expect(newVector.x.toNumber()).toEqual(-1.0)
-      expect(newVector.y.toNumber()).toEqual( 4.0)
-      expect(newVector.z.toNumber()).toEqual( 5.0)
+      expect(T.x(newVector).toNumber()).toEqual(-1.0)
+      expect(T.y(newVector).toNumber()).toEqual( 4.0)
+      expect(T.z(newVector).toNumber()).toEqual( 5.0)
     })
   })
 
@@ -134,9 +134,9 @@ describe('Subtract tuples', () => {
     })
 
     test('subtracts the xyz', () => {
-      expect(newVector.x.toNumber()).toEqual(-3.0)
-      expect(newVector.y.toNumber()).toEqual(-6.0)
-      expect(newVector.z.toNumber()).toEqual(-9.0)
+      expect(T.x(newVector).toNumber()).toEqual(-3.0)
+      expect(T.y(newVector).toNumber()).toEqual(-6.0)
+      expect(T.z(newVector).toNumber()).toEqual(-9.0)
     })
   })
 })
@@ -146,10 +146,10 @@ describe('Negating a tuple', () => {
   const negativeTuple  = T.negate(tuple1)
 
   it('negates all the tuple values', () => {
-    expect(negativeTuple.x.toNumber()).toEqual(-3.0)
-    expect(negativeTuple.y.toNumber()).toEqual(-6.0)
-    expect(negativeTuple.z.toNumber()).toEqual(-9.0)
-    expect(negativeTuple.w.toNumber()).toEqual(-1.0)
+    expect(T.x(negativeTuple).toNumber()).toEqual(-3.0)
+    expect(T.y(negativeTuple).toNumber()).toEqual(-6.0)
+    expect(T.z(negativeTuple).toNumber()).toEqual(-9.0)
+    expect(T.w(negativeTuple).toNumber()).toEqual(-1.0)
   })
 })
 
@@ -158,10 +158,10 @@ describe('Multiplying a tuple by a scalar', () => {
   it('multipllies the tuple by the scalar', () => {
     const b = T.multiply(a, 3.5)
 
-    expect(b.x.toNumber()).toEqual(a.x.toNumber() * 3.5)
-    expect(b.y.toNumber()).toEqual(a.y.toNumber() * 3.5)
-    expect(b.z.toNumber()).toEqual(a.z.toNumber() * 3.5)
-    expect(b.w.toNumber()).toEqual(a.w.toNumber() * 3.5)
+    expect(T.x(b).toNumber()).toEqual(T.x(a).toNumber() * 3.5)
+    expect(T.y(b).toNumber()).toEqual(T.y(a).toNumber() * 3.5)
+    expect(T.z(b).toNumber()).toEqual(T.z(a).toNumber() * 3.5)
+    expect(T.w(b).toNumber()).toEqual(T.w(a).toNumber() * 3.5)
   })
 })
 
@@ -170,10 +170,10 @@ describe('Multiplying a tuple by a fraction', () => {
   it('multiplies the tuple by the fraction', () => {
     const b = T.multiply(a, 0.5)
 
-    expect(b.x.toNumber()).toEqual(a.x.toNumber() * 0.5)
-    expect(b.y.toNumber()).toEqual(a.y.toNumber() * 0.5)
-    expect(b.z.toNumber()).toEqual(a.z.toNumber() * 0.5)
-    expect(b.w.toNumber()).toEqual(a.w.toNumber() * 0.5)
+    expect(T.x(b).toNumber()).toEqual(T.x(a).toNumber() * 0.5)
+    expect(T.y(b).toNumber()).toEqual(T.y(a).toNumber() * 0.5)
+    expect(T.z(b).toNumber()).toEqual(T.z(a).toNumber() * 0.5)
+    expect(T.w(b).toNumber()).toEqual(T.w(a).toNumber() * 0.5)
   })
 })
 
@@ -182,9 +182,9 @@ describe('Dividing a tuple by a scalar', () => {
   it('divides the tuple by the scalar', () => {
     const b = T.divide(a, 2)
 
-    expect(b.x.toNumber()).toEqual(a.x.toNumber() / 2)
-    expect(b.y.toNumber()).toEqual(a.y.toNumber() / 2)
-    expect(b.z.toNumber()).toEqual(a.z.toNumber() / 2)
-    expect(b.w.toNumber()).toEqual(a.w.toNumber() / 2)
+    expect(T.x(b).toNumber()).toEqual(T.x(a).toNumber() / 2)
+    expect(T.y(b).toNumber()).toEqual(T.y(a).toNumber() / 2)
+    expect(T.z(b).toNumber()).toEqual(T.z(a).toNumber() / 2)
+    expect(T.w(b).toNumber()).toEqual(T.w(a).toNumber() / 2)
   })
 })

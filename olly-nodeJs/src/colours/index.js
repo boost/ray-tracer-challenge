@@ -1,12 +1,8 @@
 import {tuple} from '../tuples'
 
-const colour = (r, g, b) => {
-  const t = tuple(r, g, b)
-  return {
-    red: t.x,
-    green: t.y,
-    blue: t.z
-  }
-}
+const colour = (r, g, b) => tuple(r, g, b)
+const red = t => t[0]
+const green = t => t[1]
+const blue = t => t[2]
 
-export {colour}
+export {colour, red, green, blue}

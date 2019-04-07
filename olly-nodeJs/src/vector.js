@@ -1,5 +1,5 @@
-import d          from '../utils/decimal'
-import {tuple, w, x, y, z} from '../tuples'
+import d                   from './utils/decimal'
+import {tuple, w, x, y, z} from './tuple'
 
 const vector = (...args) => tuple(...args, d(0.0))
 

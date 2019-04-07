@@ -1,6 +1,10 @@
 ## Getting started
 
-Install nodeJs, 8 or above.
+Install nodeJs, 8 or above.  `yarn` will install the node modules, including [canvas](https://www.npmjs.com/package/canvas), which will required the following dependencies on Mac OSX.
+
+
+`brew install pkg-config cairo pango libpng jpeg giflib librsvg`
+
 
 ```
 yarn

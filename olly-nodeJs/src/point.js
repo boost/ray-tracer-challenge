@@ -1,5 +1,5 @@
-import {tuple, w} from '../tuples'
-import d from '../utils/decimal'
+import {tuple, w} from './tuple'
+import d          from './utils/decimal'
 
 const point = (...args) => tuple(...args, d(1.0))
 

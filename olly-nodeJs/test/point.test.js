@@ -1,5 +1,5 @@
-import * as P    from '../../src/points'
-import {x,y,z,w} from '../../src/tuples'
+import * as P    from '../src/point'
+import {x,y,z,w} from '../src/tuple'
 
 describe('Creating a point', () => {
 

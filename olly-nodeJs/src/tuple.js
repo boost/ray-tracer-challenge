@@ -1,4 +1,4 @@
-import d      from '../utils/decimal'
+import d from './utils/decimal'
 
 const tuple =  (x,y,z,w) => ([ d(x), d(y), d(z), w != null ? d(w) : null])
 

@@ -10,8 +10,8 @@
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.5.0",
     "eslint": "^5.15.3",
-    "jest": "^24.5.0",
-    "esm": "^3.2.22"
+    "esm": "^3.2.22",
+    "jest": "^24.5.0"
   },
   "scripts": {
     "test": "jest --verbose",
@@ -20,6 +20,7 @@
     "projectile": "node -r esm projectile.js"
   },
   "dependencies": {
+    "canvas": "^2.4.1",
     "decimal.js": "^10.1.1"
   }
 }

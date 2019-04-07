@@ -1,5 +1,5 @@
-import * as C from '../../src/colours'
-import * as T from '../../src/tuples'
+import * as C from '../src/colour'
+import * as T from '../src/tuple'
 
 describe('Colours are (red, green, blue) tuples', () => {
   const colour = C.colour(-0.5, 0.4, 1.7)

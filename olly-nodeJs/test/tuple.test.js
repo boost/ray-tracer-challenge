@@ -1,6 +1,6 @@
-import * as T from '../../src/tuples'
-import * as P from '../../src/points'
-import * as V from '../../src/vectors'
+import * as T from '../src/tuple'
+import * as P from '../src/point'
+import * as V from '../src/vector'
 
 describe('Creating tuples', () => {
   test('A tuple with w=1.0 is a point', () => {

@@ -1,5 +1,5 @@
-import * as V    from '../../src/vectors'
-import {x,y,z,w} from '../../src/tuples'
+import * as V    from '../src/vector'
+import {x,y,z,w} from '../src/tuple'
 
 describe('Creating a vectpr', () => {
 

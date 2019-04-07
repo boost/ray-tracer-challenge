@@ -1,4 +1,4 @@
-import {tuple} from '../tuples'
+import {tuple} from './tuple'
 
 const colour = (r, g, b) => tuple(r, g, b)
 const red = t => t[0]

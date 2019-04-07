@@ -1,6 +1,4 @@
 import d      from '../utils/decimal'
-import * as V from '../vectors'
-import * as P from '../points'
 
 const tuple =  (x,y,z,w) => ([ d(x), d(y), d(z), w != null ? d(w) : null])
 
@@ -19,18 +17,18 @@ const addTuples = (t1, t2) => {
   const newX = x(t1).plus(x(t2))
   const newY = y(t1).plus(y(t2))
   const newZ = z(t1).plus(z(t2))
+  const newW = (w(t1) && w(t2)) ? w(t1).plus(w(t2)) : null
 
-  if(w(t1).plus(w(t2)).equals(0.0)) return V.vector(newX, newY, newZ)
-  return P.point(newX, newY, newZ)
+  return tuple(newX, newY, newZ, newW)
 }
 
 const subtractTuples = (t1, t2) => {
   const newX = x(t1).minus(x(t2))
   const newY = y(t1).minus(y(t2))
   const newZ = z(t1).minus(z(t2))
-  if(P.all([t1, t2]) || V.all([t1, t2])) return V.vector(newX, newY, newZ)
+  const newW = (w(t1) && w(t2)) ? w(t1).minus(w(t2)) : null
 
-  return P.point(newX, newY, newZ)
+  return tuple(newX, newY, newZ, newW)
 }
 
 const negate =  t1 => (tuple( x(t1).neg(), y(t1).neg(), z(t1).neg(), w(t1).neg()) )

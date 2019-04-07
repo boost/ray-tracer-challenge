@@ -3,7 +3,10 @@ import {tuple, w, x, y, z} from '../tuples'
 
 const vector = (...args) => tuple(...args, d(0.0))
 
-const isVector = t => w(t).equals(0.0)
+const isVector = t => {
+  if(!w(t)) return false
+  return w(t).equals(0.0)
+}
 
 const all =  ary => ary.every( tuple => (isVector(tuple)))
 

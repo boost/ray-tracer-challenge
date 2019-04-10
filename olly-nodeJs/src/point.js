@@ -1,11 +1,10 @@
-import {tuple, w} from './tuple'
-import d          from './utils/decimal'
+import {tuple, w, validW} from './tuple'
 
-const point = (...args) => tuple(...args, d(1.0))
+const point = (...args) => tuple(...args, 1.0)
 
 const isPoint = t => {
-  if(!w(t)) return false
-  return w(t).equals(1.0)
+  if(!validW(t)) return false
+  return w(t) === 1.0
 }
 
 const all = ary => ary.every(t => (isPoint(t)))

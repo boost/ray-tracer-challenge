@@ -1,6 +1,7 @@
 import {tuple} from './tuple'
+import d       from './utils/decimal'
 
-const colour = (r, g, b) => tuple(r, g, b)
+const colour = (...args) => ([...args])
 
 const red = t => t[0]
 const green = t => t[1]
@@ -8,9 +9,9 @@ const blue = t => t[2]
 
 const multiply = (t1, t2) => {
   return tuple(
-    red(t1).times(red(t2)),
-    green(t1).times(green(t2)),
-    blue(t1).times(blue(t2)),
+    d(red(t1)).times(d(red(t2))).toNumber(),
+    d(green(t1)).times(d(green(t2))).toNumber(),
+    d(blue(t1)).times(d(blue(t2))).toNumber(),
   )
 }
 

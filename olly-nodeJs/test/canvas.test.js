@@ -23,7 +23,6 @@ describe('Creating a canvas', () => {
   })
 })
 
-
 describe('Scenario: Writing pixels to a canvas', () => {
   const c = createCanvas(10, 20)
   const red = colour(1, 0, 0)

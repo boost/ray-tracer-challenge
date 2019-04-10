@@ -20,12 +20,7 @@ const magnitude = v => {
 
 const normalise = v => {
   let m = d(magnitude(v))
-  return tuple(
-    d(x(v)).dividedBy(m).toNumber(),
-    d(y(v)).dividedBy(m).toNumber(),
-    d(z(v)).dividedBy(m).toNumber(),
-    d(w(v)).dividedBy(m).toNumber()
-  )
+  return tuple(...v.map(int => (d(int).dividedBy(m).toNumber())))
 }
 
 const dot = (a,b) => {

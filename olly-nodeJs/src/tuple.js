@@ -17,7 +17,6 @@ const equalTuples = (t1, t2) => {
 }
 
 const addTuples = (t1, t2) => {
-
   return tuple(...t1.map((int, i) => {
     return d(int).plus(d(t2[i])).toNumber()
   }))

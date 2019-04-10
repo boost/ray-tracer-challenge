@@ -23,4 +23,5 @@ const pixelAt = (canvas, x, y) => {
 }
 
 const pixelColour = pixel => (colour(red(pixel), green(pixel), blue(pixel)))
+
 export {allPixels, writePixel, pixelAt, pixelColour}

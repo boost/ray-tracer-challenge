@@ -32,19 +32,15 @@ const subtractTuples = (t1, t2) => {
 const negate =  t1 => (tuple( 0 - x(t1), 0 - y(t1), 0 - z(t1), 0 - w(t1)) )
 
 const multiply = (t, scalar) => {
-  return tuple(
-    d(x(t)).times(scalar).toNumber(),
-    d(y(t)).times(scalar).toNumber(),
-    d(z(t)).times(scalar).toNumber(),
-    d(w(t)).times(scalar).toNumber())
+  return tuple(...t.map(int => {
+    return d(int).times(scalar).toNumber()
+  }))
 }
 
 const divide = (t, scalar) => {
-  return tuple(
-    d(x(t)).dividedBy(scalar).toNumber(),
-    d(y(t)).dividedBy(scalar).toNumber(),
-    d(z(t)).dividedBy(scalar).toNumber(),
-    d(w(t)).dividedBy(scalar).toNumber())
+  return tuple(...t.map(int => {
+    return d(int).dividedBy(scalar).toNumber()
+  }))
 }
 
 export {

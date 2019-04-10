@@ -1,5 +1,5 @@
 import {createImageData}                     from 'canvas'
-
+import {red, green, blue, colour}            from './colour'
 const allPixels = canvas => {
   const ctx = canvas.getContext('2d', {pixelFormat: 'RGB24'})
   let data = ctx.getImageData(0,0,canvas.width,canvas.height).data
@@ -21,4 +21,6 @@ const pixelAt = (canvas, x, y) => {
   const ctx = canvas.getContext('2d', {pixelFormat: 'RGB24'})
   return ctx.getImageData(x, y, 1, 1).data
 }
-export {allPixels, writePixel, pixelAt}
+
+const pixelColour = pixel => (colour(red(pixel), green(pixel), blue(pixel)))
+export {allPixels, writePixel, pixelAt, pixelColour}

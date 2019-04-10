@@ -1,6 +1,6 @@
-import {createCanvas}                     from 'canvas'
-import {allPixels, writePixel, pixelAt} from '../src/canvas'
-import {colour}                           from '../src/colour'
+import {createCanvas}                                from 'canvas'
+import {allPixels, writePixel, pixelAt, pixelColour} from '../src/canvas'
+import {colour}                                      from '../src/colour'
 
 describe('Creating a canvas', () => {
   const c = createCanvas(10, 20)
@@ -16,9 +16,9 @@ describe('Creating a canvas', () => {
   it('creates a canvas with every pixel black', () => {
     const black = colour(0,0,0)
     allPixels(c).map(p => {
-      let col = colour(...p)
+      let colourOfPixel = pixelColour(p)
 
-      expect(col).toEqual(black)
+      expect(colourOfPixel).toEqual(black)
     })
   })
 })
@@ -30,6 +30,6 @@ describe('Scenario: Writing pixels to a canvas', () => {
   writePixel(c, 2, 3, red)
 
   it('makes the pixel at the coordinates int the canvas the right colour', () => {
-    expect(pixelAt(c, 2, 3)).toEqual(red)
+    expect(pixelColour(pixelAt(c, 2, 3))).toEqual(red)
   })
 })

@@ -45,3 +45,20 @@ describe('Multiplying a colour by a scalar', () => {
     expect(c3).toEqual(C.colour(0.9, 0.2, 0.04))
   })
 })
+
+describe('Converting to byte colour', () => {
+  const c1 = C.colour(0.9, 0.6, 0.75)
+
+  it('converts the colour byte values', () => {
+    expect(C.toBytes(c1)).toEqual([255*0.9, 255*0.6, 255*0.75])
+  })
+})
+
+describe('Converting from byte colour', () => {
+  const byteColour = [255, 255, 255]
+
+  it('converts the colour byte values', () => {
+    expect(C.fromBytes(byteColour)).toEqual([1, 1, 1])
+  })
+})
+

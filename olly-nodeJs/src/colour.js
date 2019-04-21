@@ -15,4 +15,8 @@ const multiply = (t1, t2) => {
   )
 }
 
-export {colour, red, green, blue, multiply}
+const toBytes = c => (c.map(num => (255*num)))
+
+const fromBytes = c => (c.map(num => (num/255)))
+
+export {colour, red, green, blue, multiply, toBytes, fromBytes}

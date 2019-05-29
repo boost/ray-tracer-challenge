@@ -56,7 +56,7 @@ describe('Scenario: Constructing the PPM header', () => {
   const header = ppm.split('\n').slice(0,3).join('\n')
 
   it('creates the right header', () => {
-    expect(header).toEqual('P3\n53\n255')
+    expect(header).toEqual('P3\n5 3\n255')
   })
 })
 
@@ -68,10 +68,9 @@ describe('ppmPixelData', () => {
   writePixel(canvas, 0, 1, c2)
 
   it('converts the pixel data to ppm string of byte colours', () => {
-    expect(ppmPixelData(canvas)).toEqual('0 0 0 0 0 0\n255 255 255 0 0 0')
+    expect(ppmPixelData(canvas)).toEqual('0 0 0 0 0 0\n255 255 255 0 0 0\n')
   })
 })
-
 
 describe('Scenario: Constructing the PPM pixel data', () => {
   const canvas  = createCanvas(5,3)
@@ -90,3 +89,25 @@ describe('Scenario: Constructing the PPM pixel data', () => {
   })
 })
 
+describe('Splitting long lines in PPM files', () => {
+  const canvas  = createCanvas(10,2)
+
+  describe('when every pixel of c is set to color(1, 0.8, 0.6)', () => {
+    const colour = C.colour(1, 0.8, 0.6)
+    for(let x = 0; x < 10; x++) {
+      for(let y = 0; y < 3; y++) {
+        writePixel(canvas, x, y, colour)
+      }
+    }
+
+    const ppm = canvasToPpm(canvas)
+    it('lines 4-7 of ppm are less than 70 characters long', () => {
+      const lines = ppm.split('\n').slice(3,8).join('\n')
+      expect(lines).toEqual(`255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204
+153 255 204 153 255 204 153 255 204 153 255 204 153
+255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204
+153 255 204 153 255 204 153 255 204 153 255 204 153
+`)
+    })
+  })
+})

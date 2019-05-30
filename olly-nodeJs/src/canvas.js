@@ -11,13 +11,12 @@ const allPixels = canvas => {
   }
 
   return pixels
-  // [[255, 255, 255, 255]]
 }
 
 const writePixel = (canvas, x, y, colour) => {
   const ctx = canvas.getContext('2d', {pixelFormat: 'RGB24'})
   const imageData = createImageData(Uint8ClampedArray.of(...C.toBytes(colour),255), 1, 1)
-  ctx.putImageData(imageData, x, y)
+  ctx.putImageData(imageData, Math.round(x), Math.round(y))
 }
 
 const rawPixelAt = (canvas, x, y) => {

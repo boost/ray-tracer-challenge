@@ -34,7 +34,7 @@ while (T.y(proj.position) >= 0.0) {
 
 positions.pop()
 
-const height= 100
+const height= 499
 const canvas = createCanvas(height,height)
 const red = C.colour(1, 1, 1)
 

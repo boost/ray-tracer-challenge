@@ -27,31 +27,34 @@ const rawPixelAt = (canvas, x, y) => {
 const pixelColour = pixel => (C.fromBytes(C.colour(C.red(pixel), C.green(pixel), C.blue(pixel))))
 
 const ppmPixelData = canvas => {
-  const width = canvas.width
-  const pixelsWithoutAlpha = [].concat(...allPixels(canvas).map(pixel => [...pixel.slice(0,3)]))
+  const {height,width} = canvas
   let ppmData = ''
   let line = ''
 
-  pixelsWithoutAlpha.map((bit, i) => {
-    const pixelNumber = ((i + 1) % 3) === 0 ? ((i + 1) / 3) : Math.round(((i + 1) / 3))
+  for(let y = 0; y < height; y++) {
+    for(let x = 0; x < width; x++) {
+      let pixelNoAlpha = rawPixelAt(canvas, x, y).slice(0,3)
+      pixelNoAlpha.map((bit, i) => {
+        let isLastInRow =  x+1 === width && i === 2
+        const isRoomAvailalbe = (line.length + String(bit).length + 1) <= 70
 
-    const lastInLine = pixelNumber > 0 && (pixelNumber % width === 0) && (i + 1) % 3 === 0
-    const roomAvailalbe = (line.length + String(bit).length + 1) <= 70
+        if(isLastInRow && isRoomAvailalbe) {
+          line = line.concat(String(bit), ' ')
+          ppmData = ppmData.concat(line.trim(), '\n')
+          line = ''
+          return
+        }
 
-    if(lastInLine && roomAvailalbe) {
-      line = line.concat(String(bit), ' ')
-      ppmData = ppmData.concat(line.trim(), '\n')
-      line = ''
-      return
+        if(!isRoomAvailalbe) {
+          ppmData = ppmData.concat(line.trim(), '\n')
+          line = ''
+        }
+
+        line = line.concat(String(bit), ' ')
+      })
+
     }
-
-    if(!roomAvailalbe) {
-      ppmData = ppmData.concat(line.trim(), '\n')
-      line = ''
-    }
-
-    line = line.concat(String(bit), ' ')
-  })
+  }
 
   return ppmData.trimLeft()
 }

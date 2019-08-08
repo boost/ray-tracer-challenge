@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe Tuple do
   context 'A tuple with w=1.0 is a point' do
     describe 'Given a tuple(4.3, -4.2, 3.1, 1.0)' do

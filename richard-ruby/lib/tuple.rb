@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
+# lib/tuple.rb
 class Tuple
   attr_accessor :x, :y, :z, :w
 
-  EPSILON = 0.00001.freeze
-  ATTRIBUTES = [:x, :y, :z, :w].freeze
+  EPSILON = 0.00001
+  ATTRIBUTES = %i[x y z w].freeze
 
   def initialize(x, y, z, w)
     @x = x
@@ -11,27 +14,23 @@ class Tuple
     @w = w
   end
 
-  def equal?(tuple)
+  def equal?(other)
     ATTRIBUTES.map do |attribute|
-      if(send(attribute) - tuple.send(attribute)).abs < EPSILON
-        true
-      else
-        false
-      end
+      (send(attribute) - other.send(attribute).abs < EPSILON)
     end.all? { |value| value == true }
   end
 
   def add(tuple)
-    new_tuple_attributes = ATTRIBUTES.map do |attribute|
-      self.send(attribute) + tuple.send(attribute)
+    new_tuple_attributes = self.class::ATTRIBUTES.map do |attribute|
+      send(attribute) + tuple.send(attribute)
     end
 
-    Tuple.new(*new_tuple_attributes)
+    self.class.new(*new_tuple_attributes)
   end
 
-  def subtract(tuple)
+  def subtract(other)
     new_tuple_attributes = ATTRIBUTES.map do |attribute|
-      send(attribute) - tuple.send(attribute)
+      send(attribute) - other.send(attribute)
     end
 
     Tuple.new(*new_tuple_attributes)
@@ -47,7 +46,7 @@ class Tuple
 
   def negate
     new_tuple_attributes = ATTRIBUTES.map do |attribute|
-      -self.send(attribute)
+      -send(attribute)
     end
 
     Tuple.new(*new_tuple_attributes)
@@ -55,7 +54,7 @@ class Tuple
 
   def multiply(value)
     new_tuple_attributes = ATTRIBUTES.map do |attribute|
-      value * self.send(attribute).to_f
+      value * send(attribute).to_f
     end
 
     Tuple.new(*new_tuple_attributes)
@@ -63,31 +62,37 @@ class Tuple
 
   def divide(value)
     new_tuple_attributes = ATTRIBUTES.map do |attribute|
-      self.send(attribute).to_f / value
+      send(attribute).to_f / value
     end
 
     Tuple.new(*new_tuple_attributes)
   end
 
   def magnitude
-    Math.sqrt(ATTRIBUTES.map { |attribute| send(attribute) ** 2 }.sum)
+    Math.sqrt(ATTRIBUTES.map { |attribute| send(attribute)**2 }.sum)
   end
 
   def normalize
     new_tuple_attributes = ATTRIBUTES.map do |attribute|
-      self.send(attribute).to_f / self.magnitude
+      send(attribute).to_f / magnitude
     end
 
     Tuple.new(*new_tuple_attributes)
   end
 
   def dot(vector)
-    self.x * vector.x + self.y * vector.y + self.z * vector.z + self.w * vector.w
+    x * vector.x + y * vector.y + z * vector.z + w * vector.w
   end
 
   def cross(vector)
-    Vector.new(self.y * vector.z - self.z * vector.y,
-               self.z * vector.x - self.x * vector.z,
-               self.x * vector.y - self.y * vector.x)
+    Vector.new(y * vector.z - z * vector.y,
+               z * vector.x - x * vector.z,
+               x * vector.y - y * vector.x)
+  end
+
+  protected
+
+  def attributes
+    self.class::ATTRIBUTES
   end
 end

@@ -1,9 +1,6 @@
-require 'spec_helper'
-
 RSpec.describe Vector do
   describe 'it creates tuples with w=0' do
     let(:vector) { Vector.new(4, -4, 3) }
-
 
     it 'creates a tuple with x = 4' do
       expect(vector.x).to eq 4

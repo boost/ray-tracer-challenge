@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# lib/vector.rb
 class Vector < Tuple
   def initialize(x, y, z)
     @x = x

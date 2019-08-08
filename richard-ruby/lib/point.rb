@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# lib/point.rb
 class Point < Tuple
   def initialize(x, y, z)
     @x = x

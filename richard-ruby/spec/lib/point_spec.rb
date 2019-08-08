@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe Point do
   describe 'Point creates Tuples with w=1' do
     let(:point) { Point.new(4, -4, 3) }
